@@ -6,9 +6,18 @@
 <p>In addition to this there are also additional features like filtering of some sort and plotting graphs on the web page for these detected changes.</p>
 
 <h2>Tech Stack Used</h2>
-<h3>Front-end</h3>
+<h3>Front-end Tech Used</h3>
 <ol type='1'>
-  <li>HTML</li>
-  <li>CSS</li>
-  <li>JS</li>
+  <li>HTML(Hyper text Markup Language)</li>
+  <li>CSS(Cascading Style Sheet)</li>
+  <li>JS(JavaScript)</li>
+</ol>
+<h3>Development Tools</h3>
+<ol type='1'>
+  <li>NPM(Node Package Manager)</li>
+  <li>Nodemon</li>
+</ol>
+<h3>Server-side Rendering</h3>
+<ol type='1'>
+  <li>EJS(Embedded JavaScript)</li>
 </ol>
