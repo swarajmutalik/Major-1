@@ -6,6 +6,9 @@
 <p>In addition to this there are also additional features like filtering of some sort and plotting graphs on the web page for these detected changes.</p>
 
 <h2>Tech Stack Used</h2>
+<h3>Front-end</h3>
 <ol type='1'>
-  <li></li>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JS</li>
 </ol>
