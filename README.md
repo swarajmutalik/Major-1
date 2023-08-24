@@ -20,4 +20,17 @@
 <h3>Server-side Rendering</h3>
 <ol type='1'>
   <li>EJS(Embedded JavaScript)</li>
+  <li>ejsmate</li>
+</ol>
+<h3>Server-side Frameworks</h3>
+<ol type='1'>
+  <li>Express</li>
+</ol>
+<h3>Database Integration</h3>
+<ol type='1'>
+  <li>Mongoose</li>
+</ol>
+<h3>Middleware</h3>
+<ol type='1'>
+  <li>Body-Parser</li>
 </ol>
