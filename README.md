@@ -7,30 +7,31 @@
 
 <h2>Tech Stack Used</h2>
 <h3>Front-end Tech Used</h3>
-<ol type='1'>
+<ul>
   <li>HTML(Hyper text Markup Language)</li>
   <li>CSS(Cascading Style Sheet)</li>
   <li>JS(JavaScript)</li>
-</ol>
+</ul>
 <h3>Development Tools</h3>
-<ol type='1'>
+<ul>
   <li>NPM(Node Package Manager)</li>
   <li>Nodemon</li>
-</ol>
+</ul>
 <h3>Server-side Rendering</h3>
-<ol type='1'>
+<ul>
   <li>EJS(Embedded JavaScript)</li>
   <li>ejsmate</li>
-</ol>
+</ul>
 <h3>Server-side Frameworks</h3>
-<ol type='1'>
+<ul>
   <li>Express</li>
-</ol>
+</ul>
 <h3>Database Integration</h3>
-<ol type='1'>
+<ul>
   <li>Mongoose</li>
-</ol>
+</ul>
 <h3>Middleware</h3>
-<ol type='1'>
+<ul>
   <li>Body-Parser</li>
-</ol>
+</ul>
+
