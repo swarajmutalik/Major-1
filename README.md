@@ -9,7 +9,7 @@
 <h3>Front-end Tech Used</h3>
 <ul>
   <li>HTML5</li>
-  <li>CSS3></li>
+  <li>CSS3</li>
   <li>JS</li>
 </ul>
 <h3>Development Tools</h3>
