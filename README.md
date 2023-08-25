@@ -9,7 +9,7 @@
 <h3>Front-end Tech Used</h3>
 <ul>
   <li>HTML(Hyper text Markup Language)</li>
-  <li>![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)</li>
+  <li>CSS3<a href="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"></a></li>
   <li>JS(JavaScript)</li>
 </ul>
 <h3>Development Tools</h3>
