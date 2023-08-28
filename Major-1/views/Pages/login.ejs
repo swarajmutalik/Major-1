@@ -9,56 +9,58 @@
         }
     </style>
     </head>
-
-    <body>
-        <div class="container">
-            <h1 class="text-center mb-4">Login Form</h1>
-            <div class="col-6 offset-3 custom-border"> <!-- Apply custom-border class -->
-                <form action="/login" method="POST" class="validated-form" novalidate>
-                    <div class="mb-3">
-                        <label class="form-label" for="username">Username</label>
-                        <input class="form-control" type="text" id="username" name="username" required>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="password">Password</label>
-                        <input class="form-control" type="password" id="password" name="password" required>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <button class="btn btn-success mb-2">Login</button>
-                </form>
-                <p>
-                    <span class="text-muted">New User -</span>
-                    <a href="/register" class="text-decoration-none text-success">Register</a>
-                </p>
-                <p>
-                    <a href="" class="text-decoration-none text-success">Forget Password ?</a>
-                </p>
-            </div>
+    <% if (successMessage) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= successMessage %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
+        <% } %>
 
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (() => {
-                'use strict'
+            <div class="container">
+                <h1 class="text-center mb-4">Login Form</h1>
+                <div class="col-6 offset-3 custom-border">
+                    <form action="/login" method="POST" class="validated-form" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <button class="btn btn-success mb-2">Login</button>
+                    </form>
+                    <p>
+                        <span class="text-muted">New User -</span>
+                        <a href="/register" class="text-decoration-none text-success">Register</a>
+                    </p>
+                    <p>
+                        <a href="" class="text-decoration-none text-success">Forget Password ?</a>
+                    </p>
+                </div>
+            </div>
 
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                const forms = document.querySelectorAll('.validated-form')
+            <script>
+                (() => {
+                    'use strict'
 
-                // Loop over them and prevent submission
-                Array.from(forms).forEach(form => {
-                    form.addEventListener('submit', event => {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
+                    const forms = document.querySelectorAll('.validated-form')
 
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-            })()
-        </script>
+                    Array.from(forms).forEach(form => {
+                        form.addEventListener('submit', event => {
+                            if (!form.checkValidity()) {
+                                event.preventDefault()
+                                event.stopPropagation()
+                            }
+
+                            form.classList.add('was-validated')
+                        }, false)
+                    })
+                })()
+            </script>
