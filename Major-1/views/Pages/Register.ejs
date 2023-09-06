@@ -11,51 +11,52 @@
         }
     </style>
     </head>
-    <div class="container">
-        <h1 class="text-center mb-4">Register Form</h1>
-        <div class="col-6 offset-3 custom-border">
-            <form action="/register" method="POST" class="validated-form" novalidate>
-                <div class="mb-3">
-                    <label class="form-label" for="username">Username</label>
-                    <input class="form-control" type="text" id="username" name="username" required>
-                    <div class="valid-feedback">
-                        Looks good!
+    <%- include('../Partials/error') %>
+        <div class="container">
+            <h1 class="text-center mb-4">Register Form</h1>
+            <div class="col-6 offset-3 custom-border">
+                <form action="/register" method="POST" class="validated-form" novalidate>
+                    <div class="mb-3">
+                        <label class="form-label" for="username">Username</label>
+                        <input class="form-control" type="text" id="username" name="username" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="email">Email Id</label>
-                    <input class="form-control" type="text" id="email" name="email" required>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Email Id</label>
+                        <input class="form-control" type="text" id="email" name="email" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="password">Password</label>
-                    <input class="form-control" type="password" id="password" name="password" required>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Password</label>
+                        <input class="form-control" type="password" id="password" name="password" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
-                </div>
-                <button class="btn btn-success">Register</button>
-            </form>
+                    <button class="btn btn-success">Register</button>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <script>
-        (() => {
-            'use strict'
+        <script>
+            (() => {
+                'use strict'
 
-            const forms = document.querySelectorAll('.validated-form')
+                const forms = document.querySelectorAll('.validated-form')
 
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
 
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
-    </script>
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })()
+        </script>
