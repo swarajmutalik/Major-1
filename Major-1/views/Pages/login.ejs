@@ -9,58 +9,53 @@
         }
     </style>
     </head>
-    <% if (successMessage) { %>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <%= successMessage %>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        <% } %>
-
-            <div class="container">
-                <h1 class="text-center mb-4">Login Form</h1>
-                <div class="col-6 offset-3 custom-border">
-                    <form action="/login" method="POST" class="validated-form" novalidate>
-                        <div class="mb-3">
-                            <label class="form-label" for="username">Username</label>
-                            <input class="form-control" type="text" id="username" name="username" required>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
+    <%- include('../Partials/success') %>    
+    <%- include('../Partials/error') %>    
+                    <div class="container">
+                        <h1 class="text-center mb-4">Login Form</h1>
+                        <div class="col-6 offset-3 custom-border">
+                            <form action="/login" method="POST" class="validated-form" novalidate>
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">Username</label>
+                                    <input class="form-control" type="text" id="username" name="username" required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="password">Password</label>
+                                    <input class="form-control" type="password" id="password" name="password" required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <button class="btn btn-success mb-2">Login</button>
+                            </form>
+                            <p>
+                                <span class="text-muted">New User -</span>
+                                <a href="/register" class="text-decoration-none text-success">Register</a>
+                            </p>
+                            <p>
+                                <a href="" class="text-decoration-none text-success">Forget Password ?</a>
+                            </p>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="password">Password</label>
-                            <input class="form-control" type="password" id="password" name="password" required>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                        </div>
-                        <button class="btn btn-success mb-2">Login</button>
-                    </form>
-                    <p>
-                        <span class="text-muted">New User -</span>
-                        <a href="/register" class="text-decoration-none text-success">Register</a>
-                    </p>
-                    <p>
-                        <a href="" class="text-decoration-none text-success">Forget Password ?</a>
-                    </p>
-                </div>
-            </div>
+                    </div>
 
-            <script>
-                (() => {
-                    'use strict'
+                    <script>
+                        (() => {
+                            'use strict'
 
-                    const forms = document.querySelectorAll('.validated-form')
+                            const forms = document.querySelectorAll('.validated-form')
 
-                    Array.from(forms).forEach(form => {
-                        form.addEventListener('submit', event => {
-                            if (!form.checkValidity()) {
-                                event.preventDefault()
-                                event.stopPropagation()
-                            }
+                            Array.from(forms).forEach(form => {
+                                form.addEventListener('submit', event => {
+                                    if (!form.checkValidity()) {
+                                        event.preventDefault()
+                                        event.stopPropagation()
+                                    }
 
-                            form.classList.add('was-validated')
-                        }, false)
-                    })
-                })()
-            </script>
+                                    form.classList.add('was-validated')
+                                }, false)
+                            })
+                        })()
+                    </script>
