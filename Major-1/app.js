@@ -6,6 +6,7 @@ const ejsMate = require("ejs-mate");
 const Register = require("./models/register");
 const flash = require("connect-flash");
 const session = require("express-session");
+const bcrypt = require("bcrypt");
 
 mongoose.connect("mongodb://127.0.0.1/File-Integrity-Monitor", {
   useNewUrlParser: true,
@@ -94,7 +95,13 @@ app.post("/register", async (req, res) => {
     return res.redirect("/register");
   }
 
-  const newRegisterUser = new Register({ username, email, password });
+  const saltRounds = 10;
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
+  const newRegisterUser = new Register({
+    username,
+    email,
+    password: hashedPassword,
+  });
 
   try {
     await newRegisterUser.save();
