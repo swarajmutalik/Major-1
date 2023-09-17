@@ -1,10 +1,15 @@
 <% layout('layouts/boilerplate') %>
     <style>
         .custom-shadow {
+            background-color: white;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         }
+        body{
+            background-color: black;
+        }
+
     </style>
-    <h2 class="text-center">Set of Instructions to be followed</h2>
+    <h2 class="text-center text-light">Set of Instructions to be followed</h2>
     <div class="container d-flex justify-content-center align-items-center vh-50">
         <div class="card custom-shadow" style="border-radius: 15px;">
             <div class="card-body">
@@ -20,8 +25,8 @@
                             Paste your User ID in the userId.txt file.
                         </p>
                     </li>
+                    <button id="downloadButton" class="btn btn-primary btn-block ml-2">Download Files</button>
                 </ol>
-                <button id="downloadButton" class="btn btn-primary btn-block mt-4">Download Files</button>
             </div>
         </div>
     </div>
@@ -29,7 +34,7 @@
         document.getElementById('downloadButton').addEventListener('click', function() {
             // Create a link element
             var link = document.createElement('a');
-            link.href = 'C:\\Users\\dwive\\Desktop\\maj\\FrontEnd\\Major-1\\Major-1\\Files\\FilesFileWatchDog.zip'; // Replace with the actual path to your zip file
+            link.href = 'D:/Sem 7/Major-1/Files/FileWatchDog.zip'; // Replace with the actual path to your zip file
             link.download = 'FileWatchDog.zip'; // Replace with the desired name for the downloaded file
             // Trigger a click event on the link to initiate download
             link.click();
