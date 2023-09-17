@@ -17,7 +17,9 @@ const RegisterSchema = new Schema({
     required: [true, "Password cannot be left blank"],
   },
 
+  hashedPassword: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Register", RegisterSchema);
-
