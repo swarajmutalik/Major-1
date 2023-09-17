@@ -1,18 +1,22 @@
 <% layout('layouts/boilerplate') %>
     <style>
         .custom-border {
+            background-color: white;
             border: 2px solid #ccc;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
         }
+        body{
+            background-color: black;
+        }
+
     </style>
     </head>
     <%- include('../Partials/success') %>    
     <%- include('../Partials/error') %>    
                     <div class="container">
-                        <h1 class="text-center mb-4">Login Form</h1>
+                        <h1 class="text-center mb-4 text-light">Login Form</h1>
                         <div class="col-6 offset-3 custom-border">
                             <form action="/login" method="POST" class="validated-form" novalidate>
                                 <div class="mb-3">
