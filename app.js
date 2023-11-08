@@ -9,6 +9,7 @@ const session = require("express-session");
 const ExpressError = require("./utils/ExpressError");
 const Joi = require("joi");
 const flash = require("connect-flash");
+const bcrypt = require("bcrypt");
 
 const { validateLogin, validateRegistration } = require("./schemas");
 
@@ -61,6 +62,7 @@ app.get("/register", (req, res) => {
   });
 });
 
+
 app.post(
   "/login",
   validateLogin,
@@ -106,10 +108,14 @@ app.post("/register", validateRegistration, async (req, res, next) => {
       return res.redirect("/register");
     }
 
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
     const newRegisterUser = new Register({
       username,
       email,
       password,
+      securePassword: hashedPassword,
     });
 
     await newRegisterUser.save();
