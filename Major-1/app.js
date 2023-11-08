@@ -117,6 +117,9 @@ app.get("/instructions", (req, res) => {
   res.render("Pages/Instructions");
 });
 
+app.get("/download-file",(req,res) =>{
+  res.download("C:/Users/dwive/Desktop/maj/Major-1/Major-1/Files/FileWatchDog.zip");
+});
 app.listen(3000, () => {
   console.log("Serving on port 3000");
 });
