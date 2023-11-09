@@ -27,16 +27,7 @@
                     </li>
                     <button id="downloadButton" class="btn btn-outline-primary btn-block ml-2">Download Files</button>
                 </ol>
+               <form action="/download-file"><button id="downloadButton" class="btn btn-primary btn-block mt-4">Download Files</button></form>
             </div>
         </div>
     </div>
-    <script>
-        document.getElementById('downloadButton').addEventListener('click', function () {
-            // Create a link element
-            var link = document.createElement('a');
-            link.href = 'D:/Sem 7/Major-1/Files/FileWatchDog.zip'; // Replace with the actual path to your zip file
-            link.download = 'FileWatchDog.zip'; // Replace with the desired name for the downloaded file
-            // Trigger a click event on the link to initiate download
-            link.click();
-        });
-    </script>

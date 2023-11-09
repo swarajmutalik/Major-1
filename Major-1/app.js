@@ -140,6 +140,20 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("errorMessage", { err });
 });
 
+app.all("*", (req, res, next) => {
+  next(new ExpressError("Page not found", 404));
+});
+
+app.use((err, req, res, next) => {
+  const { statusCode = 500 } = err;
+  if (!err.message) err.message = "Oh no,Something went wrong";
+  res.status(statusCode).render("errorMessage", { err });
+});
+
+app.get("/download-file",(req,res) =>{
+  res.download("C:/Users/dwive/Desktop/maj/Major-1/Major-1/Files/FileWatchDog.zip");
+});
+
 app.listen(3000, () => {
   console.log("Serving on port 3000");
 });
