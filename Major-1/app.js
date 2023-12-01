@@ -11,7 +11,8 @@ const Joi = require("joi");
 const flash = require("connect-flash");
 const bcrypt = require("bcrypt");
 
-const { validateLogin, validateRegistration } = require("./schemas");
+
+const { validateLogin, validateRegistration } = require("./schema");
 
 mongoose.connect("mongodb://127.0.0.1:27017/FIM", {
   useNewUrlParser: true,
@@ -130,28 +131,18 @@ app.get("/instructions", (req, res) => {
   res.render("Pages/Instructions");
 });
 
-app.all("*", (req, res, next) => {
-  next(new ExpressError("Page not found", 404));
-});
-
-app.use((err, req, res, next) => {
-  const { statusCode = 500 } = err;
-  if (!err.message) err.message = "Oh no,Something went wrong";
-  res.status(statusCode).render("errorMessage", { err });
-});
-
-app.all("*", (req, res, next) => {
-  next(new ExpressError("Page not found", 404));
-});
-
-app.use((err, req, res, next) => {
-  const { statusCode = 500 } = err;
-  if (!err.message) err.message = "Oh no,Something went wrong";
-  res.status(statusCode).render("errorMessage", { err });
-});
-
 app.get("/download-file",(req,res) =>{
   res.download("C:/Users/dwive/Desktop/maj/Major-1/Major-1/Files/FileWatchDog.zip");
+});
+
+app.all("*", (req, res, next) => {
+  next(new ExpressError("Page not found", 404));
+});
+
+app.use((err, req, res, next) => {
+  const { statusCode = 500 } = err;
+  if (!err.message) err.message = "Oh no,Something went wrong";
+  res.status(statusCode).render("errorMessage", { err });
 });
 
 app.listen(3000, () => {
