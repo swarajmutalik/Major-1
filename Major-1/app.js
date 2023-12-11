@@ -10,7 +10,7 @@ const ExpressError = require("./utils/ExpressError");
 const Joi = require("joi");
 const flash = require("connect-flash");
 const bcrypt = require("bcrypt");
-const data = require("./Data/names");
+
 
 const { validateLogin, validateRegistration } = require("./schema");
 
@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
   const username = req.session.username;
   const userId = req.session.userId;
-  res.render("home", { isLoggedIn, username, userId, data });
+  res.render("home", { isLoggedIn, username, userId });
 });
 
 app.get("/login", (req, res) => {
