@@ -10,7 +10,7 @@ const ExpressError = require("./utils/ExpressError");
 const Joi = require("joi");
 const flash = require("connect-flash");
 const bcrypt = require("bcrypt");
-
+const data = require("./Data/names");
 
 const { validateLogin, validateRegistration } = require("./schema");
 
@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
   const isLoggedIn = req.session.isLoggedIn;
   const username = req.session.username;
   const userId = req.session.userId;
-  res.render("home", { isLoggedIn, username, userId });
+  res.render("home", { isLoggedIn, username, userId, data });
 });
 
 app.get("/login", (req, res) => {
@@ -62,7 +62,6 @@ app.get("/register", (req, res) => {
     errorMessage: req.flash("error"),
   });
 });
-
 
 app.post(
   "/login",
@@ -83,7 +82,7 @@ app.post(
     req.session.isLoggedIn = true;
     req.session.username = username;
     req.session.userId = user._id;
-    req.flash("success", "Successfully logged in");
+    req.flash("success", `Successfully logged in. User ID: ${user._id}`);
     res.redirect("/");
   })
 );
@@ -131,8 +130,8 @@ app.get("/instructions", (req, res) => {
   res.render("Pages/Instructions");
 });
 
-app.get("/download-file",(req,res) =>{
-  res.download("C:/Users/dwive/Desktop/maj/Major-1/Major-1/Files/FileWatchDog.zip");
+app.get("/download-file", (req, res) => {
+  res.download("D:/Sem 7/Major-1/Files/FileWatchDog.zip");
 });
 
 app.all("*", (req, res, next) => {
