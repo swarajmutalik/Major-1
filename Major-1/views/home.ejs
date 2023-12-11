@@ -8,22 +8,184 @@
         <title>Home Page</title>
     </head>
 
-    <body>
-        <h1>File Integrity Monitor</h1>
-    </body>
+    <% if (isLoggedIn) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>
+                Welcome, <%= username %> - (User Id: <%= userId %>)
+            </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% } %>
+
+            <body>
+                <% if(isLoggedIn) {%>
+
+                    <div class="container mt-5">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Filter By:
+                            </a>
+                            <ul class="dropdown-menu">
+                                <div class="form-group filter-form">
+                                    <select class="form-select" id="filterSelect" onchange="updateFilterInput()">
+                                        <option value="all">All</option>
+                                        <option value="name">Filter by message</option>
+                                        <option value="username">Filter by username</option>
+                                    </select>
+                                </div>
+                                <div class="form-group filter-form" id="filterInputContainer">
+                                    <!-- Input boxes for each filter option will be added here dynamically -->
+                                </div>
+                            </ul>
+
+
+                            <div class="data-container" id="dataContainer"></div>
+
+
+                            <% } %>
+                                <style>
+                                    body {
+                                        background-color: #2e3c50;
+                                        color: #fff;
+                                        font-family: Arial, sans-serif;
+
+                                    }
+
+                                    .nav-link {
+                                        margin-top: 70px;
+                                        margin-bottom: 10px;
+
+                                    }
+
+                                    .data-container {
+                                        background-color: #37474f;
+                                        border-radius: 8px;
+                                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                        width: 100%;
+                                        text-align: center;
+                                        margin: 0;
+                                        padding: 0;
+
+                                    }
+
+                                    .data-container ul {
+                                        list-style-type: none;
+                                        padding: 0;
+                                        margin: 0;
+                                    }
+
+                                    .data-container li {
+                                        margin-bottom: 10px;
+                                        font-size: 16px;
+                                        line-height: 1.5;
+                                        color: #fff;
+                                    }
+
+                                    .alert {
+                                        margin: 0;
+                                        width: 100%;
+                                        padding-bottom: 10px;
+                                    }
+                                </style>
+
+                                <script>
+                                    let dataArray = [];
+
+                                    // Make an API call using JavaScript fetch
+                                    fetch(`http://localhost:8080/get_logs?userId=<%= userId %>`)
+                                        .then(response => response.json()) // Parse the JSON response
+                                        .then(data => {
+                                            // Store the retrieved data in the array
+                                            dataArray = data;
+
+                                            // Log the retrieved data array
+                                            console.log('Retrieved data:', dataArray);
+
+                                            // Display the data on the page
+                                            displayDataOnPage(data);
+                                        })
+                                        .catch(error => {
+                                            console.error('Error fetching data:', error);
+                                        });
+
+                                    function displayDataOnPage(data) {
+                                        // Get the container element
+                                        const dataContainer = document.getElementById('dataContainer');
+
+                                        // Clear previous content
+                                        dataContainer.innerHTML = '';
+
+                                        // Helper function to create HTML representation of the data
+                                        function createHTMLRepresentation(obj, parentKey = '') {
+                                            let result = '<ul>';
+                                            for (const key in obj) {
+                                                if (obj.hasOwnProperty(key)) {
+                                                    const nestedKey = parentKey ? `${key}` : key;
+
+                                                    if (typeof obj[key] === 'object') {
+                                                        result += `<li>${createHTMLRepresentation(obj[key], nestedKey)}</li><hr>`;
+                                                    } else {
+                                                        result += `<li>${obj[key]}</li>`;
+                                                    }
+                                                }
+                                            }
+                                            result += '</ul>';
+                                            return result;
+                                        }
+
+                                        // Get the HTML representation of the data
+                                        const dataHTML = createHTMLRepresentation(data);
+
+                                        // Set the HTML content of the container
+                                        dataContainer.innerHTML = dataHTML;
+                                    }
+
+                                    function filterUserList() {
+                                        var filterSelect = document.getElementById("filterSelect");
+                                        var selectedFilter = filterSelect.value.toLowerCase();
+                                        var filterInput = document.getElementById(selectedFilter + "Filter").value.toLowerCase();
+
+                                        var dataContainer = document.getElementById('dataContainer');
+                                        var dataItems = dataContainer.querySelectorAll('li');
+
+                                        dataItems.forEach(function (item) {
+                                            var itemValue = item.textContent.toLowerCase();
+                                            var isMatch = itemValue.includes(filterInput);
+
+                                            if (isMatch) {
+                                                item.style.display = "block";
+                                            } else {
+                                                item.style.display = "none";
+                                            }
+                                        });
+                                    }
+
+                                    function updateFilterInput() {
+                                        var filterSelect = document.getElementById("filterSelect");
+                                        var selectedFilter = filterSelect.value.toLowerCase();
+
+                                        var filterInputContainer = document.getElementById("filterInputContainer");
+                                        filterInputContainer.innerHTML = ''; // Clear previous input boxes
+
+                                        if (selectedFilter !== "all") {
+                                            // Create input box for the selected filter option
+                                            var inputLabel = document.createElement("label");
+                                            inputLabel.setAttribute("for", selectedFilter + "Filter");
+                                            inputLabel.textContent = "Enter filter criteria:";
+
+                                            var inputBox = document.createElement("input");
+                                            inputBox.setAttribute("type", "text");
+                                            inputBox.setAttribute("class", "form-control");
+                                            inputBox.setAttribute("id", selectedFilter + "Filter");
+                                            inputBox.setAttribute("oninput", "filterUserList()");
+
+                                            filterInputContainer.appendChild(inputLabel);
+                                            filterInputContainer.appendChild(inputBox);
+                                        }
+                                    }
+
+                                </script>
+            </body>
 
     </html>
-
-    <style>
-        body {
-            background-color: #2c3e50;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            font-size: 24px;
-        }
-    </style>
